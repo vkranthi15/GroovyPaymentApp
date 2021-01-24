@@ -71,15 +71,14 @@ public class ProductListAdapter
                 StateListHelper.getTextColorSelector(mContext, R.color.black_space));
 
         // product price formatted
-        holder.price.setText(
-                new CurrencyRules().getFormattedAmount(item.getUnitPrice(), Locale.getDefault()));
+        String price =
+                new CurrencyRules().getFormattedAmount(item.getUnitPrice(), Locale.getDefault());
 
-        // extra notes
+        // price and extra notes
         if(item.getNote().isEmpty()) {
-            holder.line.setVisibility(View.GONE);
+            holder.priceAndNote.setText(price);
         } else {
-            holder.line.setVisibility(View.VISIBLE);
-            holder.note.setText(item.getNote());
+            holder.priceAndNote.setText(String.format("%s | %s", price, item.getNote()));
         }
     }
 
@@ -91,19 +90,15 @@ public class ProductListAdapter
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ViewGroup container;
         TextView label;
-        TextView price;
-        TextView note;
+        TextView priceAndNote;
         ImageView productImage;
-        View line;
 
         ViewHolder(View itemView) {
             super(itemView);
             container = itemView.findViewById(R.id.container);
             productImage = itemView.findViewById(R.id.icon);
             label = itemView.findViewById(R.id.label);
-            price = itemView.findViewById(R.id.price);
-            note = itemView.findViewById(R.id.note);
-            line = itemView.findViewById(R.id.line);
+            priceAndNote = itemView.findViewById(R.id.price_and_note);
             container.setOnClickListener(this);
         }
 
