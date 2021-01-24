@@ -122,7 +122,7 @@ public final class GroovyDemoManager {
                 "Google I/O Novelty T-Shirt",
                 "Depicts the little green android dude",
                 1750L, 800L,
-                GroovyIcon.CoffeeMug, GroovyColor.Red));
+                GroovyIcon.TShirt, GroovyColor.Orange));
         productEntities.add(ProductBuilder.build(106L,
                 "Super Nintendo Entertainment System",
                 "The classic SNES console w/ Super Mario World",
