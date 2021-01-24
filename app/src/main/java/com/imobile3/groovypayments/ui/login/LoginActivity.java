@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.imobile3.groovypayments.R;
 import com.imobile3.groovypayments.ui.BaseActivity;
 import com.imobile3.groovypayments.ui.main.MainDashboardActivity;
+import com.imobile3.groovypayments.ui.user.UserProfileActivity;
+import com.imobile3.groovypayments.utils.Constants;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -67,7 +69,6 @@ public class LoginActivity extends BaseActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                 }
-                handleLoginSuccess();
             }
         });
 
@@ -90,17 +91,6 @@ public class LoginActivity extends BaseActivity {
         };
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                }
-                return false;
-            }
-        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,8 +112,13 @@ public class LoginActivity extends BaseActivity {
 
     private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO: Initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(LoginActivity.this, UserProfileActivity.class);
+        intent.putExtra(Constants.KEY_DISPLAY_NAME, model.getDisplayName());
+        intent.putExtra(Constants.KEY_USERNAME, model.getUserName());
+        intent.putExtra(Constants.KEY_EMAIL, model.getEmail());
+        startActivity(intent);
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {

@@ -7,11 +7,13 @@ import com.imobile3.groovypayments.MainApplication;
 import com.imobile3.groovypayments.data.entities.ProductEntity;
 import com.imobile3.groovypayments.data.entities.ProductTaxJunctionEntity;
 import com.imobile3.groovypayments.data.entities.TaxEntity;
+import com.imobile3.groovypayments.data.entities.UserEntity;
 import com.imobile3.groovypayments.data.enums.GroovyColor;
 import com.imobile3.groovypayments.data.enums.GroovyIcon;
 import com.imobile3.groovypayments.data.utils.ProductBuilder;
 import com.imobile3.groovypayments.data.utils.ProductTaxJunctionBuilder;
 import com.imobile3.groovypayments.data.utils.TaxBuilder;
+import com.imobile3.groovypayments.data.utils.UserBuilder;
 
 import androidx.annotation.NonNull;
 
@@ -79,9 +81,10 @@ public final class GroovyDemoManager {
             // Insert entities into database instance.
             GroovyDatabase database = DatabaseHelper.getInstance().getDatabase();
             database.getProductDao()
-                    .insertProducts(getProductEntities());
-            database.getTaxDao().insertTaxes(getTaxEntity());
-            database.getProductTaxJunctionDao().insertProductTaxJunctions(getProductTaxJunctionEntities());
+                    .insertProducts(getProductEntityRecords());
+            database.getTaxDao().insertTaxes(getTaxEntityRecords());
+            database.getProductTaxJunctionDao().insertProductTaxJunctions(getProductTaxJunctionEntityRecords());
+            database.getUserDao().insertUsers(getUserEntityRecords());
 
             // All done!
             return null;
@@ -94,7 +97,7 @@ public final class GroovyDemoManager {
         }
     }
 
-    private List<ProductEntity> getProductEntities() {
+    private List<ProductEntity> getProductEntityRecords() {
         List<ProductEntity> productEntities = new ArrayList<>();
 
         // Adding list of product as per given mock.
@@ -137,14 +140,14 @@ public final class GroovyDemoManager {
         return productEntities;
     }
 
-    private TaxEntity getTaxEntity() {
+    private TaxEntity getTaxEntityRecords() {
         // Adding Tax record
         return TaxBuilder.build(1,
                 "Sales Tax",
                 "0.04");
     }
 
-    private List<ProductTaxJunctionEntity> getProductTaxJunctionEntities() {
+    private List<ProductTaxJunctionEntity> getProductTaxJunctionEntityRecords() {
         // Adding list of product tax junction records
         List<ProductTaxJunctionEntity> productTaxJunctionEntities = new ArrayList<>();
         productTaxJunctionEntities.add(ProductTaxJunctionBuilder.build(101L, 1L));
@@ -156,5 +159,16 @@ public final class GroovyDemoManager {
         productTaxJunctionEntities.add(ProductTaxJunctionBuilder.build(107L, 1L));
 
         return productTaxJunctionEntities;
+    }
+
+    private List<UserEntity> getUserEntityRecords() {
+        // Adding list of user records
+        List<UserEntity> userEntities = new ArrayList<>();
+        userEntities.add(UserBuilder.build(10001L, "Test", "User",
+                "testuser", "testuser@gmail.com", "Awesome@12"));
+        userEntities.add(UserBuilder.build(10002L, "Fred", "Fredburger",
+                "fburger", "fburger@gmail.com", "Awesome@12"));
+
+        return userEntities;
     }
 }
