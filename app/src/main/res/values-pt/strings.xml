@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Groovy Mobile Payments</string>
+
+    <!-- Common -->
+    <string name="common_cancel">Cancelar</string>
+    <string name="common_ok">Está bem</string>
+    <string name="common_back">De volta</string>
+    <string name="common_order_entry">Entrada de pedido</string>
+    <string name="common_change">mudança</string>
+    <string name="common_management">Gestão</string>
+    <string name="common_time_tracking">Controle de Tempo</string>
+    <string name="common_under_construction">Em construção</string>
+    <string name="common_acknowledged">Reconhecida</string>
+    <string name="common_order_history">Histórico de pedidos</string>
+    <string name="common_secret_functions">Funções secretas</string>
+    <string name="common_user_profile">Perfil de usuário</string>
+    <string name="common_lorem_ipsum_description">Lorem ipsum dolor sit amet, consectetur elit adipiscing.
+        Commodo inteiro, nisi a rutrum dapibus, urna elit cursus mi, ut
+        elementum lacus elit nec diam. Nullam laoreet dui id dui facilisis lacinia. Sed convallis
+        feugiat ex, interdum tincidunt sapien consequat ut.</string>
+
+    <!-- Login -->
+    <string name="prompt_email">O email</string>
+    <string name="reports">Relatórios</string>
+    <string name="prompt_password">" Senha"</string>
+    <string name="action_sign_in">Entrar ou Registrar</string>
+    <string name="skip_login">Pular login</string>
+    <string name="action_sign_in_short">assinar em</string>
+    <string name="welcome">Bem-vinda!</string>
+    <string name="invalid_username">Não é um nome de usuário válido</string>
+    <string name="invalid_password">A senha deve ter> 5 caracteres</string>
+    <string name="login_failed">Falha na autenticação</string>
+
+    <!-- Main Dashboard -->
+    <string name="order_entry_description">Navegue pelo estoque da loja ou venda produtos para o cliente.</string>
+    <string name="user_profile_description">Visualize ou edite suas configurações de usuário atuais.</string>
+    <string name="management_description">Gerencie suas configurações de ponto de venda.</string>
+    <string name="time_tracking_description">Clock in / out e veja sua atividade recente.</string>
+    <string name="order_history_description">Dê uma olhada no histórico de pedidos atendidos neste Ponto de venda.</string>
+    <string name="secret_functions_description">Área super secreta onde você pode realizar apresentações especiais
+        funções, como redefinir o banco de dados de demonstração.</string>
+    <string name="placeholder_description">Este é um espaço reservado temporário.</string>
+    <string name="under_construction_alert_message">Esta área do aplicativo ainda é
+        em construção. Sinta-se à vontade para demonstrar suas habilidades e desenvolvê-las.</string>
+    <string name="main_dashboard_subtitle">Onde você gostaria de ir?</string>
+    <string name="reports_description">Visualize o gráfico de popularidade de produtos com base em
+        relatório.</string>
+
+    <!-- User Profile -->
+    <string name="user_profile_username">Nome do usuário:</string>
+    <string name="user_profile_subtitle_format">Bem-vindo %1$s.</string>
+    <string name="user_profile_email">O email:</string>
+    <string name="user_profile_hours_week">Horas (semana):</string>
+
+    <!-- Secret Functions -->
+    <string name="secret_functions_subtitle">Área altamente secreta.:</string>
+    <string name="secret_functions_reset_database">Reiniciar banco de dados</string>
+    <string name="secret_functions_alert_title">Função Executada</string>
+    <string name="secret_functions_erase_cart">Apagar carrinho</string>
+    <string name="secret_functions_alert_button">Entendido.</string>
+    <string name="secret_functions_alert_reset_database">Banco de dados de demonstração redefinido com sucesso
+        (todos os dados de demonstração originais foram restaurados). Esta mensagem se autodestruirá.</string>
+    <string name="secret_functions_alert_erase_cart">" Sua instância atual do carrinho foi apagada.
+        É quase como se o seu carrinho nunca tivesse existido&#8230;"</string>
+
+    <!-- Order Entry -->
+    <string name="order_entry_subtitle">Adicione produtos ao pedido.</string>
+    <string name="order_entry_subtitle_checkout">Clique no ícone superior direito para finalizar a compra.</string>
+    <string name="order_entry_product_image_description">Imagem do Produto</string>
+
+    <!-- Order History -->
+    <string name="order_history_alert_title">Não implementado</string>
+    <string name="order_history_subtitle">Pedidos recentes listados abaixo.</string>
+    <string name="order_history_alert_button">Certa.</string>
+    <string name="order_history_alert_message">Funcionalidade de histórico de pedidos não implementada.
+        Pare de clicar nos itens da lista.</string>
+    <string name="order_history_alert_warning_button">Tanto faz.</string>
+    <string name="order_history_alert_warning_title">Pare com isso</string>
+    <string name="order_history_alert_warning_message">Você foi avisado para não clicar nos itens da lista.
+        Os administradores foram notificados.</string>
+
+    <!--Daily Report-->
+    <string name="daily_report_subtitle">Relatório diário</string>
+    <string name="daily_report_product_popularity">Popularidade do produto</string>
+    <string name="daily_report_progress_message">Carregando gráfico</string>
+
+    <!-- Checkout -->
+    <string name="checkout_subtitle">Como você vai pagar?</string>
+    <string name="checkout_with_cash">Com dinheiro</string>
+    <string name="checkout_pay_cash">Pagar em dinheiro)</string>
+    <string name="checkout_with_credit">Com crédito</string>
+    <string name="checkout_pay_credit">Pagar (crédito)</string>
+    <string name="checkout_complete_title_message">Parabéns! Seu pagamento foi
+        aprovado!</string>
+    <string name="checkout_complete_subtitle">Pedido completo!</string>
+    <string name="checkout_complete_customer_message">Obrigado por comprar conosco - clique no
+        botão abaixo para retornar à tela de entrada de pedido.</string>
+    <string name="checkout_complete_groovy">Groovy!</string>
+
+    <!-- Payment Types -->
+    <string name="credit">Crédito</string>
+    <string name="cash">Dinheiro</string>
+
+    <!-- Keypad -->
+    <string name="keypad_1">1</string>
+    <string name="keypad_2">2</string>
+    <string name="keypad_3">3</string>
+    <string name="keypad_4">4</string>
+    <string name="keypad_5">5</string>
+    <string name="keypad_6">6</string>
+    <string name="keypad_7">7</string>
+    <string name="keypad_8">8</string>
+    <string name="keypad_9">9</string>
+    <string name="keypad_00">00</string>
+    <string name="keypad_0">0</string>
+
+    <!-- Progress / Tasks -->
+    <string-array name="progress_dialog_messages">
+        <item>Análise de números&#8230;</item>
+        <item>Avaliando dados&#8230;</item>
+        <item>Analisando valores&#8230;</item>
+        <item>Algoritmos em execução&#8230;</item>
+        <item>Verificando com Bancos&#8230;</item>
+        <item>Usando Aprendizado de Máquina&#8230;</item>
+        <item>Contando feijão&#8230;</item>
+    </string-array>
+</resources>
