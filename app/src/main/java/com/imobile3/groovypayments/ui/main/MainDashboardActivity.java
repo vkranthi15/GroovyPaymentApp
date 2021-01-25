@@ -86,7 +86,10 @@ public class MainDashboardActivity extends BaseActivity {
                 break;
 
             case UserProfile:
-                startActivity(new Intent(this, UserProfileActivity.class));
+                Intent intent = new Intent(this, UserProfileActivity.class);
+                Intent receivedIntent = getIntent();
+                intent.putExtras(receivedIntent.getExtras());
+                startActivity(intent);
                 break;
 
             case Management:

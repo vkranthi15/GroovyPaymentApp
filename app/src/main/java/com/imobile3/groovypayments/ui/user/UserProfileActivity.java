@@ -18,10 +18,13 @@ public class UserProfileActivity extends BaseActivity {
         setContentView(R.layout.user_profile_activity);
 
         Intent intent = getIntent();
-        welcomeMessage = "Welcome " + intent.getStringExtra(Constants.KEY_DISPLAY_NAME);
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            welcomeMessage = "Welcome " + bundle.getString(Constants.KEY_DISPLAY_NAME, Constants.EMPTY_STRING);
 
-        setUpMainNavBar();
-        setUpViews(intent.getStringExtra(Constants.KEY_USERNAME), intent.getStringExtra(Constants.KEY_EMAIL));
+            setUpMainNavBar();
+            setUpViews(bundle.getString(Constants.KEY_USERNAME), bundle.getString(Constants.KEY_EMAIL));
+        }
     }
 
     @Override

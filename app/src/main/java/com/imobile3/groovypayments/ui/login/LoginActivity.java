@@ -28,6 +28,7 @@ import androidx.lifecycle.ViewModelProviders;
 public class LoginActivity extends BaseActivity {
 
     private LoginViewModel loginViewModel;
+    private LoggedInUserView model;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,7 @@ public class LoginActivity extends BaseActivity {
                 if (loginResult.getSuccess() != null) {
                     updateUiWithUser(loginResult.getSuccess());
                 }
+                handleLoginSuccess();
             }
         });
 
@@ -91,6 +93,17 @@ public class LoginActivity extends BaseActivity {
         };
         usernameEditText.addTextChangedListener(afterTextChangedListener);
         passwordEditText.addTextChangedListener(afterTextChangedListener);
+        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    loginViewModel.login(usernameEditText.getText().toString(),
+                            passwordEditText.getText().toString());
+                }
+                return false;
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,14 +124,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
+        this.model = model;
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-
-        Intent intent = new Intent(LoginActivity.this, UserProfileActivity.class);
-        intent.putExtra(Constants.KEY_DISPLAY_NAME, model.getDisplayName());
-        intent.putExtra(Constants.KEY_USERNAME, model.getUserName());
-        intent.putExtra(Constants.KEY_EMAIL, model.getEmail());
-        startActivity(intent);
     }
 
     private void showLoginFailed(@StringRes Integer errorString) {
@@ -130,6 +138,12 @@ public class LoginActivity extends BaseActivity {
 
         // Complete and destroy login activity once successful
         finish();
-        startActivity(new Intent(LoginActivity.this, MainDashboardActivity.class));
+        Intent intent = new Intent(LoginActivity.this, MainDashboardActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(Constants.KEY_DISPLAY_NAME, model.getDisplayName());
+        bundle.putString(Constants.KEY_USERNAME, model.getUserName());
+        bundle.putString(Constants.KEY_EMAIL, model.getEmail());
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
