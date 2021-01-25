@@ -139,11 +139,13 @@ public class LoginActivity extends BaseActivity {
         // Complete and destroy login activity once successful
         finish();
         Intent intent = new Intent(LoginActivity.this, MainDashboardActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString(Constants.KEY_DISPLAY_NAME, model.getDisplayName());
-        bundle.putString(Constants.KEY_USERNAME, model.getUserName());
-        bundle.putString(Constants.KEY_EMAIL, model.getEmail());
-        intent.putExtras(bundle);
+        if (model != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.KEY_DISPLAY_NAME, model.getDisplayName());
+            bundle.putString(Constants.KEY_USERNAME, model.getUserName());
+            bundle.putString(Constants.KEY_EMAIL, model.getEmail());
+            intent.putExtras(bundle);
+        }
         startActivity(intent);
     }
 }
