@@ -1,12 +1,10 @@
 package com.imobile3.groovypayments.ui.orderhistory;
 
 import android.os.Bundle;
-
+import android.widget.Toast;
 import com.imobile3.groovypayments.R;
-import com.imobile3.groovypayments.data.model.Cart;
 import com.imobile3.groovypayments.ui.BaseActivity;
 import com.imobile3.groovypayments.ui.adapter.CartListAdapter;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,15 +28,15 @@ public class OrderHistoryActivity extends BaseActivity {
                 new ArrayList<>(),
                 new CartListAdapter.AdapterCallback() {
                     @Override
-                    public void onCartClick(Cart cart) {
-                        handleCartClick(cart);
+                    public void onCartClick() {
+                        handleCartClick();
                     }
                 });
         mCartListRecyclerView = findViewById(R.id.list_carts);
         mCartListRecyclerView.setAdapter(mCartListAdapter);
         mCartListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // TODO: Load order history (Cart data models) from the database
+        loadOrderHistory();
     }
 
     @Override
@@ -66,7 +64,20 @@ public class OrderHistoryActivity extends BaseActivity {
         return mViewModel;
     }
 
-    private void handleCartClick(@NonNull Cart cart) {
+    private void loadOrderHistory() {
+        getViewModel().getProductsAddedToCart()
+                .observe(this, data -> {
+                    if (data != null && data.size() > 0) {
+                        mCartListAdapter.setItems(data);
+                    } else {
+                        Toast.makeText(OrderHistoryActivity.this,
+                                getText(R.string.order_history_no_products_added_to_cart),
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void handleCartClick() {
         // TODO: Do something with the cart
         getViewModel().addCartClick();
 

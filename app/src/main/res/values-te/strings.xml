@@ -75,6 +75,8 @@
     <string name="order_history_alert_warning_button">ఏదో ఒకటి.</string>
     <string name="order_history_alert_warning_message">"జాబితా అంశాలను క్లిక్ చేయవద్దని మీకు హెచ్చరించబడింది.
         నిర్వాహకులకు తెలియజేయబడింది. "</string>
+    <string name="order_history_no_products_added_to_cart">
+        కార్ట్‌లో ఉత్పత్తులు లేవు, దయచేసి వాటిని ఇప్పుడు జోడించండి.</string>
 
     <!--Daily Report-->
     <string name="daily_report_product_popularity">ఉత్పత్తి ప్రజాదరణ</string>

@@ -79,6 +79,8 @@
     <string name="order_history_alert_warning_title">Pare com isso</string>
     <string name="order_history_alert_warning_message">Você foi avisado para não clicar nos itens da lista.
         Os administradores foram notificados.</string>
+    <string name="order_history_no_products_added_to_cart">
+        Nenhum produto no carrinho, adicione-os agora.</string>
 
     <!--Daily Report-->
     <string name="daily_report_subtitle">Relatório diário</string>
