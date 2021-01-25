@@ -12,6 +12,8 @@ import com.imobile3.groovypayments.data.enums.GroovyColor;
 import com.imobile3.groovypayments.data.enums.GroovyIcon;
 import com.imobile3.groovypayments.data.model.Cart;
 import com.imobile3.groovypayments.rules.CartRules;
+import com.imobile3.groovypayments.rules.CurrencyRules;
+import com.imobile3.groovypayments.ui.orderhistory.CartAndProducts;
 import com.imobile3.groovypayments.utils.StateListHelper;
 
 import org.jetbrains.annotations.NotNull;
@@ -23,22 +25,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CartListAdapter
         extends RecyclerView.Adapter<CartListAdapter.ViewHolder> {
 
     private Context mContext;
     private AdapterCallback mCallbacks;
-    private List<Cart> mItems;
+    private List<CartAndProducts> mItems;
 
     public interface AdapterCallback {
 
-        void onCartClick(Cart cart);
+        void onCartClick();
     }
 
     public CartListAdapter(
             @NonNull Context context,
-            @NonNull List<Cart> carts,
+            @NonNull List<CartAndProducts> carts,
             @NonNull AdapterCallback callback) {
         mContext = context;
         mCallbacks = callback;
@@ -55,17 +58,20 @@ public class CartListAdapter
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Cart item = mItems.get(position);
-        CartRules rules = new CartRules(item);
+        CartAndProducts item = mItems.get(position);
+        CartRules rules = new CartRules();
 
         // Configure the icon and background circle.
         holder.icon.setImageResource(GroovyIcon.Bookmarklet.drawableRes);
         holder.icon.setBackground(
                 ContextCompat.getDrawable(mContext, GroovyColor.Orange.colorRes));
 
-        holder.description.setText(rules.getOrderHistoryDescription());
+        holder.description.setText(rules.getOrderHistoryProducts(item.getProducts()));
         holder.description.setTextColor(
                 StateListHelper.getTextColorSelector(mContext, R.color.gray_down_pour));
+
+        holder.labelDate.setText(rules.getFormattedDate(item.getDateCreated(), Locale.getDefault()));
+        holder.labelTotal.setText(new CurrencyRules().getFormattedAmount(item.getGrandTotal(), Locale.getDefault()));
     }
 
     @Override
@@ -91,16 +97,16 @@ public class CartListAdapter
         @Override
         public void onClick(View v) {
             if (v == container) {
-                mCallbacks.onCartClick(mItems.get(getAdapterPosition()));
+                mCallbacks.onCartClick();
             }
         }
     }
 
-    public List<Cart> getItems() {
+    public List<CartAndProducts> getItems() {
         return mItems;
     }
 
-    public void setItems(@Nullable List<Cart> items) {
+    public void setItems(@Nullable List<CartAndProducts> items) {
         mItems = items != null ? items : new ArrayList<>();
         notifyDataSetChanged();
     }

@@ -160,6 +160,16 @@
         <item name="android:textSize">@dimen/text_size_header</item>
     </style>
 
+    <!-- TextView (Gray) -->
+    <style name="Gray_TextView" parent="@style/TextView.Label.Bold">
+        <item name="android:textColor">@color/gray_silver</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="Gray_TextView_Two_Lines" parent="@style/Gray_TextView">
+        <item name="android:maxLines">2</item>
+    </style>
+
     <!-- Stripe UI -->
     <style name="Stripe.CardInputWidget.EditText" parent="Stripe.Base.CardInputWidget.EditText" tools:ignore="PrivateResource">
         <item name="android:textSize">19sp</item>

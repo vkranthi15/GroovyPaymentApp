@@ -18,7 +18,7 @@ public interface ProductTaxJunctionDao {
     List<ProductTaxJunctionEntity> getProductTaxJunctions();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertProductTaxJunctions(ProductTaxJunctionEntity... values);
+    void insertProductTaxJunctions(List<ProductTaxJunctionEntity> values);
 
     @Update
     void updateProductTaxJunctions(ProductTaxJunctionEntity... values);

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">గ్రూవి మొబైల్ చెల్లింపులు</string>
+
+    <!-- Common -->
+    <string name="common_ok">అలాగే</string>
+    <string name="common_cancel">రద్దు చేయండి</string>
+    <string name="common_change">మార్పు</string>
+    <string name="common_back">" తిరిగి"</string>
+    <string name="common_order_entry">ఆర్డర్ ఎంట్రీ</string>
+    <string name="common_management">నిర్వహణ</string>
+    <string name="common_time_tracking">టైమ్ ట్రాకింగ్</string>
+    <string name="common_under_construction">నిర్మాణంలో ఉంది</string>
+    <string name="common_order_history">ఆర్డర్ చరిత్ర</string>
+    <string name="common_acknowledged">తెలియజేసారు</string>
+    <string name="common_secret_functions">రహస్య విధులు</string>
+    <string name="common_user_profile">వినియోగదారు వివరాలు</string>
+    <string name="common_lorem_ipsum_description">లోరెం ఇప్సమ్ డోలర్ సిట్ అమేట్, కన్సెక్టూర్ ఎలిప్ను మెరుగుపరుస్తుంది. ఇంటీజర్ కమోడో, నిసి ఎ రుట్రమ్ డాపిబస్, ఉర్నా ఎలిట్ కర్సస్ మై,
+        ఉట్ ఎలిమెంటమ్ లాకస్ ఎలిట్ నెక్ డైమ్. నుల్లం లారెట్ డుయ్ ఐడి డుయి ఫెసిలిసిస్ లాసినియా. సెడ్ కన్వల్లిస్ feugiat ex, interdum tincidunt sapien పర్యవసానంగా.</string>
+    <string name="reports">నివేదికలు</string>
+
+    <!-- Login -->
+    <string name="prompt_email">ఇమెయిల్</string>
+    <string name="prompt_password">పాస్వర్డ్</string>
+    <string name="action_sign_in">సైన్ ఇన్ చేయండి లేదా నమోదు చేయండి</string>
+    <string name="skip_login">లాగిన్ దాటవేయి</string>
+    <string name="action_sign_in_short">సైన్ ఇన్ చేయండి</string>
+    <string name="welcome">స్వాగతం!</string>
+    <string name="invalid_username">చెల్లుబాటు అయ్యే వినియోగదారు పేరు కాదు</string>
+    <string name="invalid_password">పాస్‌వర్డ్ తప్పనిసరిగా> 5 అక్షరాలు ఉండాలి</string>
+    <string name="login_failed">లాగిన్ విఫలమైంది</string>
+
+    <!-- Main Dashboard -->
+    <string name="order_entry_description">స్టోర్ జాబితాను బ్రౌజ్ చేయండి లేదా ఉత్పత్తులను అమ్మండి కస్టమర్.</string>
+    <string name="user_profile_description">మీ ప్రస్తుత వినియోగదారు సెట్టింగులను వీక్షించండి లేదా సవరించండి.</string>
+    <string name="management_description">మీ పాయింట్ ఆఫ్ సేల్ సెట్టింగులను నిర్వహించండి.</string>
+    <string name="time_tracking_description">" క్లాక్ ఇన్ / అవుట్ మరియు మీ ఇటీవలి కార్యాచరణను చూడండి."</string>
+    <string name="order_history_description">దీనిపై నెరవేర్చిన చారిత్రక ఆదేశాలను పరిశీలించండి అమ్మే చోటు.</string>
+    <string name="secret_functions_description">మీరు ప్రత్యేకంగా చేయగల సూపర్ సీక్రెట్ ప్రాంతం డెమో డేటాబేస్ను రీసెట్ చేయడం వంటి విధులు.</string>
+    <string name="placeholder_description">ఇది తాత్కాలిక ప్లేస్‌హోల్డర్.</string>
+    <string name="under_construction_alert_message">అప్లికేషన్ యొక్క ఈ ప్రాంతం ఇప్పటికీ ఉంది నిర్మాణంలో ఉంది.
+        మీ నైపుణ్యాలను ప్రదర్శించడానికి మరియు దానిని నిర్మించడానికి సంకోచించకండి.</string>
+    <string name="main_dashboard_subtitle">" మీరు ఎక్కడికి వెళ్లాలనుకుంటున్నారు?"</string>
+    <string name="reports_description">" రోజువారీ ఆధారంగా ఉత్పత్తుల ప్రజాదరణ చార్ట్ చూడండి నివేదిక."</string>
+
+    <!-- User Profile -->
+    <string name="user_profile_subtitle_format">స్వాగతం %1$s.</string>
+    <string name="user_profile_username">వినియోగదారు పేరు:</string>
+    <string name="user_profile_email">ఇమెయిల్:</string>
+    <string name="user_profile_hours_week">గంటలు (వారం):</string>
+
+    <!-- Secret Functions -->
+    <string name="secret_functions_subtitle">అగ్ర రహస్య ప్రాంతం.</string>
+    <string name="secret_functions_erase_cart">బండిని తొలగించండి</string>
+    <string name="secret_functions_reset_database">డేటాబేస్ను రీసెట్ చేయండి</string>
+    <string name="secret_functions_alert_title">ఫంక్షన్ అమలు చేయబడింది</string>
+    <string name="secret_functions_alert_button">నకలు చెయ్యి.</string>
+    <string name="secret_functions_alert_reset_database">డెమో డేటాబేస్ విజయవంతంగా రీసెట్ చేయబడింది (అన్ని అసలు డెమో డేటా పునరుద్ధరించబడింది).
+        ఈ సందేశం స్వీయ-నాశనం చేస్తుంది.</string>
+    <string name="secret_functions_alert_erase_cart">మీ ప్రస్తుత కార్ట్ ఉదాహరణ చెరిపివేయబడింది.
+        మీ కార్ట్ ఎప్పుడూ లేనట్లుగా ఉంది&#8230;</string>
+
+    <!-- Order Entry -->
+    <string name="order_entry_subtitle">ఆర్డర్‌కు ఉత్పత్తులను జోడించండి.</string>
+    <string name="order_entry_subtitle_checkout">చెక్అవుట్ చేయడానికి కుడి-కుడి చిహ్నాన్ని క్లిక్ చేయండి.</string>
+    <string name="order_entry_product_image_description">ఉత్పత్తి చిత్రం</string>
+
+    <!-- Order History -->
+    <string name="order_history_subtitle">ఇటీవలి ఆర్డర్‌లు క్రింద ఇవ్వబడ్డాయి.</string>
+    <string name="order_history_alert_title">అమలు చేయలేదు</string>
+    <string name="order_history_alert_message">ఆర్డర్ చరిత్ర కార్యాచరణ అమలు కాలేదు.
+        దయచేసి జాబితా అంశాలపై క్లిక్ చేయడం ఆపండి.</string>
+    <string name="order_history_alert_button">ఖచ్చితంగా.</string>
+    <string name="order_history_alert_warning_title">ఆపు దాన్ని</string>
+    <string name="order_history_alert_warning_button">ఏదో ఒకటి.</string>
+    <string name="order_history_alert_warning_message">"జాబితా అంశాలను క్లిక్ చేయవద్దని మీకు హెచ్చరించబడింది.
+        నిర్వాహకులకు తెలియజేయబడింది. "</string>
+    <string name="order_history_no_products_added_to_cart">
+        కార్ట్‌లో ఉత్పత్తులు లేవు, దయచేసి వాటిని ఇప్పుడు జోడించండి.</string>
+
+    <!--Daily Report-->
+    <string name="daily_report_product_popularity">ఉత్పత్తి ప్రజాదరణ</string>
+    <string name="daily_report_subtitle">రోజువారీ నివేదిక</string>
+    <string name="daily_report_progress_message">చార్ట్ లోడ్ అవుతోంది</string>
+
+    <!-- Checkout -->
+    <string name="checkout_subtitle">మీరు ఎలా చెల్లించాలి?</string>
+    <string name="checkout_with_cash">నగదుతో</string>
+    <string name="checkout_with_credit">క్రెడిట్‌తో</string>
+    <string name="checkout_pay_cash">గదు చెల్లించు</string>
+    <string name="checkout_complete_title_message">అభినందనలు! మీ చెల్లింపు ఆమోదించబడింది!</string>
+    <string name="checkout_pay_credit">చెల్లించండి (క్రెడిట్)</string>
+    <string name="checkout_complete_subtitle">ఆర్డర్ పూర్తయింది!</string>
+    <string name="checkout_complete_customer_message">" మాతో షాపింగ్ చేసినందుకు ధన్యవాదాలు - క్లిక్ చేయండి ఆర్డర్ ఎంట్రీ స్క్రీన్‌కు తిరిగి రావడానికి దిగువ బటన్."</string>
+    <string name="checkout_complete_groovy">గ్రూవి!</string>
+
+    <!-- Payment Types -->
+    <string name="credit">క్రెడిట్</string>
+    <string name="cash">నగదు</string>
+
+    <!-- Keypad -->
+    <string name="keypad_1">1</string>
+    <string name="keypad_2">2</string>
+    <string name="keypad_3">3</string>
+    <string name="keypad_4">4</string>
+    <string name="keypad_5">5</string>
+    <string name="keypad_6">6</string>
+    <string name="keypad_7">7</string>
+    <string name="keypad_8">8</string>
+    <string name="keypad_9">9</string>
+    <string name="keypad_00">00</string>
+    <string name="keypad_0">0</string>
+
+    <!-- Progress / Tasks -->
+    <string-array name="progress_dialog_messages">
+        <item>సంఖ్యలను క్రంచింగ్&#8230;</item>
+        <item>డేటాను మూల్యాంకనం చేస్తోంది&#8230;</item>
+        <item>విలువలను విశ్లేషించడం&#8230;</item>
+        <item>అల్గోరిథంలను నడుపుతోంది&#8230;</item>
+        <item>బ్యాంకులతో తనిఖీ చేస్తోంది&#8230;</item>
+        <item>మెషిన్ లెర్నింగ్ ఉపయోగించడం&#8230;</item>
+        <item>బీన్స్ లెక్కింపు&#8230;</item>
+    </string-array>
+
+</resources>

@@ -68,6 +68,7 @@
     <!-- Order Entry -->
     <string name="order_entry_subtitle">Add products to the order.</string>
     <string name="order_entry_subtitle_checkout">Click the top-right icon to checkout.</string>
+    <string name="order_entry_product_image_description">Product Image</string>
 
     <!-- Order History -->
     <string name="order_history_subtitle">Recent orders listed below.</string>
@@ -79,6 +80,7 @@
     <string name="order_history_alert_warning_button">Whatever.</string>
     <string name="order_history_alert_warning_message">You were warned not to click the list items.
         Administrators have been notified.</string>
+    <string name="order_history_no_products_added_to_cart">No Products in cart, please add them now.</string>
 
     <!--Daily Report-->
     <string name="daily_report_subtitle">Daily Report</string>

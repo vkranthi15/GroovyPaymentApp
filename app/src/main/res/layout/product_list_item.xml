@@ -18,19 +18,26 @@
         android:paddingStart="@dimen/padding_medium"
         android:paddingEnd="@dimen/padding_medium">
 
-        <View
+        <ImageView
             android:id="@+id/icon"
             android:layout_width="@dimen/product_list_icon_size"
             android:layout_height="@dimen/product_list_icon_size"
             android:layout_gravity="center_vertical"
+            android:contentDescription="@string/order_entry_product_image_description"
             android:padding="@dimen/product_list_icon_padding" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/padding_medium"
+            android:layout_marginEnd="@dimen/padding_medium"
+            android:background="@color/gray_silver" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
-            android:orientation="vertical"
-            tools:background="#fe6">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/label"
@@ -39,6 +46,12 @@
                 android:layout_height="wrap_content"
                 tools:text="BBQ Bacon Cheeseburger"
                 tools:textColor="@color/red_cinnabar" />
+
+            <TextView
+                android:id="@+id/price_and_note"
+                style="@style/Gray_TextView"
+                android:includeFontPadding="false"
+                tools:text="$150.00 | Requires at least 48 hours to fulfill custom order" />
         </LinearLayout>
     </LinearLayout>
 

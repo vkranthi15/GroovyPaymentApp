@@ -24,7 +24,7 @@ public interface ProductDao {
     List<Product> getProducts();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertProducts(ProductEntity... values);
+    void insertProducts(List<ProductEntity> values);
 
     @Update
     void updateProducts(ProductEntity... values);

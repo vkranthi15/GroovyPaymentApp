@@ -17,8 +17,11 @@ public interface UserDao {
     @Query("SELECT * FROM user")
     List<UserEntity> getUsers();
 
+    @Query("SELECT * FROM user WHERE email = :email AND password = :pwd")
+    UserEntity getUser(String email, String pwd);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertUsers(UserEntity... values);
+    void insertUsers(List<UserEntity> values);
 
     @Update
     void updateUsers(UserEntity... values);

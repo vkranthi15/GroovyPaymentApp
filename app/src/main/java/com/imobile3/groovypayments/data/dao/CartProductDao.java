@@ -25,4 +25,7 @@ public interface CartProductDao {
 
     @Delete
     void deleteCartProducts(CartProductEntity... values);
+
+    @Query("SELECT name FROM cart_product WHERE cart_id = :cartId")
+    List<String> getCartProductsWithCartId(long cartId);
 }

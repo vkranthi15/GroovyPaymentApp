@@ -5,19 +5,25 @@ package com.imobile3.groovypayments.data.model;
  */
 public class LoggedInUser {
 
-    private String displayName;
-    private String userId;
+    private final String displayName;
+    private final String userName;
+    private final String email;
 
-    public LoggedInUser(String userId, String displayName) {
-        this.userId = userId;
+    public LoggedInUser(String userName, String displayName, String email) {
+        this.userName = userName;
         this.displayName = displayName;
+        this.email = email;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUserName() {
+        return userName;
     }
 
     public String getDisplayName() {
         return displayName;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

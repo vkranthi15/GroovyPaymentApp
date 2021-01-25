@@ -26,6 +26,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -36,6 +38,8 @@ public final class CartRules {
 
     @NonNull
     private Cart mCart;
+
+    public CartRules() {}
 
     public CartRules(@NonNull Cart cart) {
         mCart = Objects.requireNonNull(cart);
@@ -79,6 +83,11 @@ public final class CartRules {
         return dateFormat.format(mCart.getDateCreated());
     }
 
+    public String getFormattedDate(Date date, @NonNull Locale locale) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy @ h:mm a", locale);
+        return dateFormat.format(date);
+    }
+
     public String getOrderHistoryDescription() {
         StringBuilder builder = new StringBuilder();
         if (mCart.getProducts() != null) {
@@ -87,6 +96,19 @@ public final class CartRules {
                     builder.append(", ");
                 }
                 builder.append(product.getName());
+            }
+        }
+        return builder.toString();
+    }
+
+    public String getOrderHistoryProducts(List<String> productNames) {
+        StringBuilder builder = new StringBuilder();
+        if (productNames != null && productNames.size() > 0) {
+            for (String name : productNames) {
+                if (builder.length() != 0) {
+                    builder.append(", ");
+                }
+                builder.append(name);
             }
         }
         return builder.toString();

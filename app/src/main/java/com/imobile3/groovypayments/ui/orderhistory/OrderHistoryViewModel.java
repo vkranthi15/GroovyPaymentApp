@@ -1,7 +1,13 @@
 package com.imobile3.groovypayments.ui.orderhistory;
 
+import com.imobile3.groovypayments.concurrent.GroovyExecutors;
 import com.imobile3.groovypayments.data.CartRepository;
+import com.imobile3.groovypayments.data.Result;
 
+import java.util.ArrayList;
+import java.util.List;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 /**
@@ -11,7 +17,7 @@ import androidx.lifecycle.ViewModel;
 public class OrderHistoryViewModel extends ViewModel {
 
     private int mCartClicks;
-    private CartRepository mRepository;
+    private final CartRepository mRepository;
 
     OrderHistoryViewModel(CartRepository repository) {
         mCartClicks = 0;
@@ -24,5 +30,24 @@ public class OrderHistoryViewModel extends ViewModel {
 
     public int getCartClicks() {
         return mCartClicks;
+    }
+
+    public LiveData<List<CartAndProducts>> getProductsAddedToCart() {
+        // Caller should observe this object for changes. When the data has finished
+        // async loading, the observer can react accordingly.
+        final MutableLiveData<List<CartAndProducts>> orderHistoryLiveData =
+                new MutableLiveData<>(new ArrayList<>());
+
+        GroovyExecutors.getInstance().getDiskIo().execute(() -> {
+            Result<List<CartAndProducts>> result = mRepository.getProductsAddedToCart();
+            if (result instanceof Result.Success) {
+                List<CartAndProducts> resultSet = ((Result.Success<List<CartAndProducts>>)result).getData();
+                orderHistoryLiveData.postValue(resultSet);
+            } else {
+                orderHistoryLiveData.postValue(new ArrayList<>());
+            }
+        });
+
+        return orderHistoryLiveData;
     }
 }

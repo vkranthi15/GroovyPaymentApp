@@ -31,6 +31,8 @@ import androidx.annotation.NonNull;
 public class MainApplication extends Application {
 
     private static MainApplication sSingleton;
+    private final static String PUBLISHABLE_KEY = "pk_test_51ICXnoIWf1Ie1NQBBGvUYUXudFssl64Jis61Mzza12a8axwlr7xp3mqB60HV5b5o2SqT09ZdMiVSKQE9n1K32c0m007N7rqeEk";
+    private final static String SECRET_KEY = "sk_test_51ICXnoIWf1Ie1NQB9WOfCs9XioqfxkV5c6FIHeBSgTd6FYgAECAevVHvYyMVDtxgDo9CnlQmibJTlV7ODn4DZf1h00o60wSyX2";
 
     @Override
     public void onCreate() {
@@ -58,8 +60,8 @@ public class MainApplication extends Application {
         return new WebServiceConfig()
                 .setApplicationContext(this)
                 .setBaseUrl("https://api.stripe.com")
-                .setPublishableApiKey(ApiKeyManager.getInstance().getStripeApiClientKey())
-                .setSecretApiKey(ApiKeyManager.getInstance().getStripeApiServerKey())
+                .setPublishableApiKey(PUBLISHABLE_KEY)
+                .setSecretApiKey(SECRET_KEY)
                 .setAppName(getString(R.string.app_name))
                 .setAppVersion(BuildConfig.VERSION_NAME);
     }

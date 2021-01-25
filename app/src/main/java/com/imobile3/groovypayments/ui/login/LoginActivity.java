@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.imobile3.groovypayments.R;
 import com.imobile3.groovypayments.ui.BaseActivity;
 import com.imobile3.groovypayments.ui.main.MainDashboardActivity;
+import com.imobile3.groovypayments.ui.user.UserProfileActivity;
+import com.imobile3.groovypayments.utils.Constants;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -26,6 +28,7 @@ import androidx.lifecycle.ViewModelProviders;
 public class LoginActivity extends BaseActivity {
 
     private LoginViewModel loginViewModel;
+    private LoggedInUserView model;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -121,8 +124,8 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
+        this.model = model;
         String welcome = getString(R.string.welcome) + model.getDisplayName();
-        // TODO: Initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
     }
 
@@ -135,6 +138,14 @@ public class LoginActivity extends BaseActivity {
 
         // Complete and destroy login activity once successful
         finish();
-        startActivity(new Intent(LoginActivity.this, MainDashboardActivity.class));
+        Intent intent = new Intent(LoginActivity.this, MainDashboardActivity.class);
+        if (model != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString(Constants.KEY_DISPLAY_NAME, model.getDisplayName());
+            bundle.putString(Constants.KEY_USERNAME, model.getUserName());
+            bundle.putString(Constants.KEY_EMAIL, model.getEmail());
+            intent.putExtras(bundle);
+        }
+        startActivity(intent);
     }
 }

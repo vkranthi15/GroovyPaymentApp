@@ -73,6 +73,7 @@
     <string name="order_entry_subtitle">Añadir productos al pedido.</string>
     <string name="order_entry_subtitle_checkout">Haga clic en el icono superior derecho para
         finalizar la compra.</string>
+    <string name="order_entry_product_image_description">imagen del producto</string>
 
     <!-- Order History -->
     <string name="order_history_subtitle">Pedidos recientes listados a continuación.</string>
@@ -84,6 +85,8 @@
     <string name="order_history_alert_warning_button">Lo que sea.</string>
     <string name="order_history_alert_warning_message">Se le advirtió que no haga clic en los
         elementos de la lista. Los administradores han sido notificados.</string>
+    <string name="order_history_no_products_added_to_cart">
+        No hay productos en el carrito, agréguelos ahora. </string>
 
     <!--Daily Report-->
     <string name="daily_report_subtitle">Reporte Diario</string>

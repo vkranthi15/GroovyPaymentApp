@@ -1,5 +1,9 @@
 package com.imobile3.groovypayments.data;
 
+import com.imobile3.groovypayments.ui.orderhistory.CartAndProducts;
+
+import java.util.List;
+
 /**
  * A repository holds a reference to different kinds of data sources
  * (web services, local database or cached data).
@@ -23,5 +27,9 @@ public class CartRepository {
 
     public CartDataSource getDataSource() {
         return mDataSource;
+    }
+
+    public Result<List<CartAndProducts>> getProductsAddedToCart() {
+        return getDataSource().loadProductsFromCart();
     }
 }

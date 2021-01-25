@@ -52,4 +52,14 @@ public enum GroovyColor {
         }
         return Gray;
     }
+
+    @NonNull
+    public static int colorFromId(int id) {
+        for (GroovyColor value : values()) {
+            if (value.id == id) {
+                return value.colorRes;
+            }
+        }
+        return Gray.colorRes;
+    }
 }

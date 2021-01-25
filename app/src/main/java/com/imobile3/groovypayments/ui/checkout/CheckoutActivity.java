@@ -3,6 +3,7 @@ package com.imobile3.groovypayments.ui.checkout;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +14,8 @@ import com.imobile3.groovypayments.data.model.PaymentType;
 import com.imobile3.groovypayments.logging.LogHelper;
 import com.imobile3.groovypayments.manager.CartManager;
 import com.imobile3.groovypayments.network.WebServiceManager;
+import com.imobile3.groovypayments.network.domainobjects.PaymentResponseDto;
+import com.imobile3.groovypayments.rules.CurrencyRules;
 import com.imobile3.groovypayments.ui.BaseActivity;
 import com.imobile3.groovypayments.ui.adapter.PaymentTypeListAdapter;
 import com.imobile3.groovypayments.ui.dialog.ProgressDialog;
@@ -22,6 +25,7 @@ import com.stripe.android.ApiResultCallback;
 import com.stripe.android.PaymentConfiguration;
 import com.stripe.android.PaymentIntentResult;
 import com.stripe.android.Stripe;
+import com.stripe.android.model.ConfirmPaymentIntentParams;
 import com.stripe.android.model.PaymentMethodCreateParams;
 import com.stripe.android.view.CardInputWidget;
 
@@ -32,11 +36,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.ref.WeakReference;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 import java.util.logging.Level;
 
 public class CheckoutActivity extends BaseActivity {
+
+    private static final String TAG = "CheckoutActivity";
 
     private CheckoutViewModel mViewModel;
     private PaymentTypeListAdapter mPaymentTypeListAdapter;
@@ -119,6 +127,8 @@ public class CheckoutActivity extends BaseActivity {
         Stripe stripe = new Stripe(context,
                 PaymentConfiguration.getInstance(context).getPublishableKey());
         stripe.onPaymentResult(requestCode, data, new PaymentResultCallback(this));
+
+        handleCheckoutComplete();
     }
 
     /*
@@ -164,7 +174,13 @@ public class CheckoutActivity extends BaseActivity {
 
         @Override
         public void onSuccess(@NonNull PaymentIntentResult result) {
-            // TODO: Invoke CartManager.getInstance().addCreditPayment()
+            Log.d(TAG, result.toString());
+            PaymentResponseDto responseDto = new PaymentResponseDto();
+            if (result.getIntent() != null) {
+                responseDto.setApprovedAmount(result.getIntent().getAmount());
+                responseDto.setGatewayMessage("Success");
+                CartManager.getInstance().addCreditPayment(responseDto);
+            }
         }
 
         @Override
@@ -180,23 +196,50 @@ public class CheckoutActivity extends BaseActivity {
     }
 
     private void handlePayWithCreditClick() {
-        PaymentMethodCreateParams params = mCreditCardInputWidget.getPaymentMethodCreateParams();
-        if (params != null) {
-            // TODO: Task #008 "Generate the Client Secret... On the Client!"
-            /*
-            1. Invoke WebServiceManager.getInstance().generateClientSecret()
+        // set credit card with test data
+        mCreditCardInputWidget.setCardNumber("4242424242424242");
+        mCreditCardInputWidget.setExpiryDate(Calendar.getInstance().get(Calendar.MONTH) + 1, Calendar.getInstance().get(Calendar.YEAR));
+        mCreditCardInputWidget.setCvcCode("555");
 
-            2. Build the ConfirmPaymentIntentParams from the Credit Widget params using
-               the SDK static method:
-               ConfirmPaymentIntentParams.createWithPaymentMethodCreateParams()
+        PaymentMethodCreateParams.Card card = new PaymentMethodCreateParams.Card.Builder()
+                .setNumber("4242424242424242")
+                .setExpiryMonth(Calendar.getInstance().get(Calendar.MONTH) + 1)
+                .setExpiryYear(Calendar.getInstance().get(Calendar.YEAR))
+                .setCvc("555")
+                .build();
 
-               Android SDK usage is documented here:
-               https://stripe.com/docs/payments/accept-a-payment#android
+        PaymentMethodCreateParams params = PaymentMethodCreateParams.create(card);
 
-            3. In the onClientSecretGenerated() callback, construct a new Stripe instance,
-               then invoke stripe.confirmPayment()
-             */
-        }
+        // Invoke WebServiceManager.getInstance().generateClientSecret()
+        WebServiceManager.getInstance().generateClientSecret(
+                getApplicationContext(),
+                CartManager.getInstance().getCart().getGrandTotal(),
+                new WebServiceManager.ClientSecretCallback() {
+                    @Override
+                    public void onClientSecretError(@NonNull String message) {
+                        dismissProgressDialog();
+
+                        showAlertDialog("Client Secret Error",
+                                "Error: " + message,
+                                "OK",
+                                null);
+                    }
+
+                    @Override
+                    public void onClientSecretGenerated(@NonNull String clientSecret) {
+                        // Build the ConfirmPaymentIntentParams from the Credit Widget params using
+                        // the SDK static method
+                        Log.d(TAG, "Client Secret: " + clientSecret);
+                        ConfirmPaymentIntentParams confirmParams = ConfirmPaymentIntentParams
+                                .createWithPaymentMethodCreateParams(params, clientSecret);
+
+                        //construct a new Stripe instance, then invoke stripe.confirmPayment()
+                        Stripe stripe = new Stripe(getApplicationContext(),
+                                PaymentConfiguration.getInstance(getApplicationContext()).getPublishableKey());
+                        stripe.confirmPayment(CheckoutActivity.this, confirmParams);
+                    }
+                }
+        );
     }
 
     @Override

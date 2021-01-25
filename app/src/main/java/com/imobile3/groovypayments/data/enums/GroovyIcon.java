@@ -70,4 +70,14 @@ public enum GroovyIcon {
         }
         return Person;
     }
+
+    @NonNull
+    public static int resourceFromId(int id) {
+        for (GroovyIcon value : values()) {
+            if (value.id == id) {
+                return value.drawableRes;
+            }
+        }
+        return Person.drawableRes;
+    }
 }

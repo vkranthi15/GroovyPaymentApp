@@ -5,9 +5,15 @@ import android.os.AsyncTask;
 
 import com.imobile3.groovypayments.MainApplication;
 import com.imobile3.groovypayments.data.entities.ProductEntity;
+import com.imobile3.groovypayments.data.entities.ProductTaxJunctionEntity;
+import com.imobile3.groovypayments.data.entities.TaxEntity;
+import com.imobile3.groovypayments.data.entities.UserEntity;
 import com.imobile3.groovypayments.data.enums.GroovyColor;
 import com.imobile3.groovypayments.data.enums.GroovyIcon;
 import com.imobile3.groovypayments.data.utils.ProductBuilder;
+import com.imobile3.groovypayments.data.utils.ProductTaxJunctionBuilder;
+import com.imobile3.groovypayments.data.utils.TaxBuilder;
+import com.imobile3.groovypayments.data.utils.UserBuilder;
 
 import androidx.annotation.NonNull;
 
@@ -72,19 +78,13 @@ public final class GroovyDemoManager {
             // Initialize a new database instance.
             DatabaseHelper.getInstance().init(mContext);
 
-            List<ProductEntity> productEntities = new ArrayList<>();
-
-            // Add one product.
-            productEntities.add(ProductBuilder.build(101L,
-                    "Tasty Chicken Sandwich",
-                    "Chicken, lettuce, tomato and mayo",
-                    750L, 200L,
-                    GroovyIcon.Sandwich, GroovyColor.Yellow));
-
             // Insert entities into database instance.
-            DatabaseHelper.getInstance().getDatabase().getProductDao()
-                    .insertProducts(
-                            productEntities.toArray(new ProductEntity[0]));
+            GroovyDatabase database = DatabaseHelper.getInstance().getDatabase();
+            database.getProductDao()
+                    .insertProducts(getProductEntityRecords());
+            database.getTaxDao().insertTaxes(getTaxEntityRecords());
+            database.getProductTaxJunctionDao().insertProductTaxJunctions(getProductTaxJunctionEntityRecords());
+            database.getUserDao().insertUsers(getUserEntityRecords());
 
             // All done!
             return null;
@@ -95,5 +95,80 @@ public final class GroovyDemoManager {
             super.onPostExecute(result);
             mCallback.onDatabaseReset();
         }
+    }
+
+    private List<ProductEntity> getProductEntityRecords() {
+        List<ProductEntity> productEntities = new ArrayList<>();
+
+        // Adding list of product as per given mock.
+        productEntities.add(ProductBuilder.build(101L,
+                "Tasty Chicken Sandwich",
+                "Chicken, lettuce, tomato and mayo",
+                750L, 200L,
+                GroovyIcon.Sandwich, GroovyColor.Yellow));
+        productEntities.add(ProductBuilder.build(102L,
+                "10-Pack of AA Batteries",
+                "Medium-quality batteries",
+                899L, 350L,
+                GroovyIcon.BatteryPack, GroovyColor.Gray));
+        productEntities.add(ProductBuilder.build(103L,
+                "Metal Folding Chair",
+                "Weighs approximately 12lbs",
+                2250L, 1200L,
+                GroovyIcon.WoodenChair, GroovyColor.Blue));
+        productEntities.add(ProductBuilder.build(104L,
+                "Coffee Mug w/ Custom Design",
+                "Requires at least 48 hours to fulfill custom order",
+                1275L, 650L,
+                GroovyIcon.CoffeeMug, GroovyColor.Red));
+        productEntities.add(ProductBuilder.build(105L,
+                "Google I/O Novelty T-Shirt",
+                "Depicts the little green android dude",
+                1750L, 800L,
+                GroovyIcon.TShirt, GroovyColor.Orange));
+        productEntities.add(ProductBuilder.build(106L,
+                "Super Nintendo Entertainment System",
+                "The classic SNES console w/ Super Mario World",
+                15000L, 8000L,
+                GroovyIcon.RetroController, GroovyColor.Purple));
+        productEntities.add(ProductBuilder.build(107L,
+                "25-Pack of Snickers Candy Bars",
+                "",
+                1500L, 700L,
+                GroovyIcon.WrappedSweet, GroovyColor.Orange));
+
+        return productEntities;
+    }
+
+    private TaxEntity getTaxEntityRecords() {
+        // Adding Tax record
+        return TaxBuilder.build(1,
+                "Sales Tax",
+                "0.04");
+    }
+
+    private List<ProductTaxJunctionEntity> getProductTaxJunctionEntityRecords() {
+        // Adding list of product tax junction records
+        List<ProductTaxJunctionEntity> productTaxJunctionEntities = new ArrayList<>();
+        productTaxJunctionEntities.add(ProductTaxJunctionBuilder.build(101L, 1L));
+        productTaxJunctionEntities.add(ProductTaxJunctionBuilder.build(102L, 1L));
+        productTaxJunctionEntities.add(ProductTaxJunctionBuilder.build(103L, 1L));
+        productTaxJunctionEntities.add(ProductTaxJunctionBuilder.build(104L, 1L));
+        productTaxJunctionEntities.add(ProductTaxJunctionBuilder.build(105L, 1L));
+        productTaxJunctionEntities.add(ProductTaxJunctionBuilder.build(106L, 1L));
+        productTaxJunctionEntities.add(ProductTaxJunctionBuilder.build(107L, 1L));
+
+        return productTaxJunctionEntities;
+    }
+
+    private List<UserEntity> getUserEntityRecords() {
+        // Adding list of user records
+        List<UserEntity> userEntities = new ArrayList<>();
+        userEntities.add(UserBuilder.build(10001L, "Test", "User",
+                "testuser", "testuser@gmail.com", "Awesome@12"));
+        userEntities.add(UserBuilder.build(10002L, "Fred", "Fredburger",
+                "fburger", "fburger@gmail.com", "Awesome@12"));
+
+        return userEntities;
     }
 }
